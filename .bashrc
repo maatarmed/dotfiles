@@ -19,22 +19,12 @@ export BROWSER="firefox"
 
 # directories
 export REPOS="$HOME/Repos"
-export GITUSER="mischavandenburg"
+export GITUSER="maatarmed"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export LAB="$GHREPOS/lab"
 export SCRIPTS="$DOTFILES/scripts"
-export ICLOUD="$HOME/icloud"
 export SECOND_BRAIN="$HOME/garden"
-
-# Go related. In general all executables and scripts go in .local/bin
-export GOBIN="$HOME/.local/bin"
-export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-# export GOPATH="$HOME/.local/share/go"
-export GOPATH="$HOME/go/"
-
-# dotnet
-export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
 
 # ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 # function from Arch Wiki, to prevent adding directories multiple times
@@ -66,10 +56,6 @@ export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
 # Commands also provided by macOS and the commands dir, dircolors, vdir have been installed with the prefix "g".
 # If you need to use these commands with their normal names, you can add a "gnubin" directory to your PATH with:
 #  PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-
-PATH="${PATH:+${PATH}:}"$SCRIPTS":/opt/homebrew/opt/dotnet@6/bin:/opt/homebrew/opt/dotnet/bin:"$HOME"/.local/bin:"$HOME"/.dotnet/tools" # appending
-
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~~~~~
 

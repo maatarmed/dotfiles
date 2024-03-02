@@ -23,8 +23,8 @@ opt.foldenable = false
 -- vim.opt.undodir = vim.fn.expand('~/.nvim/undodir')
 
 -- scrolling
-opt.number = false
-opt.relativenumber = false
+opt.number = true
+opt.relativenumber = true
 opt.scrolloff = 8
 opt.linebreak = true
 
