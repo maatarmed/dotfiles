@@ -153,6 +153,11 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- Center the screen when moving half page up/down
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
@@ -183,7 +188,6 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -612,9 +616,9 @@ require('lazy').setup {
         lsp_fallback = true,
       },
       formatters_by_ft = {
-        lua = { 'stylua', 'black', 'isort' },
+        lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
