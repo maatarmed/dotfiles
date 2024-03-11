@@ -215,8 +215,9 @@ if not vim.loop.fs_stat(lazypath) then
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
-require('lazy').setup 'plugins'
+local lazy = require 'lazy'
+lazy.setup 'plugins'
+require 'config.keymaps'
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
