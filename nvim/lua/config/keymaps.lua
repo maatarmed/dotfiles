@@ -20,10 +20,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -34,5 +34,58 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-nnoremap('<C-d>', '<C-d>zz')
-nnoremap('<C-u>', '<C-u>zz')
+-- recenter after C-d
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+-- Harpoon config
+local nnoremap = require('config.keymap_utils').nnoremap
+local harpoon_ui = require 'harpoon.ui'
+local harpoon_mark = require 'harpoon.mark'
+local harpoon = require 'harpoon'
+-- Harpoon keybinds --
+-- Open harpoon ui
+nnoremap('<C-e>', function()
+  harpoon_ui.toggle_quick_menu()
+end)
+
+-- Add current file to harpoon
+nnoremap('<leader>a', function()
+  harpoon_mark.add_file()
+end)
+
+-- Remove current file from harpoon
+nnoremap('<leader>hr', function()
+  harpoon_mark.rm_file()
+end)
+
+-- Remove all files from harpoon
+nnoremap('<leader>hc', function()
+  harpoon_mark.clear_all()
+end)
+
+nnoremap('<leader>1', function()
+  harpoon_ui.nav_file(1)
+end)
+
+nnoremap('<leader>2', function()
+  harpoon_ui.nav_file(2)
+end)
+
+nnoremap('<leader>3', function()
+  harpoon_ui.nav_file(3)
+end)
+
+nnoremap('<leader>4', function()
+  harpoon_ui.nav_file(4)
+end)
+
+nnoremap('<leader>5', function()
+  harpoon_ui.nav_file(5)
+end)
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set('n', '<C-S-P>', function()
+  harpoon:list():prev()
+end)
+vim.keymap.set('n', '<C-S-N>', function()
+  harpoon:list():next()
+end)
