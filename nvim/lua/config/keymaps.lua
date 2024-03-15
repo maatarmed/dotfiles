@@ -89,3 +89,7 @@ end)
 vim.keymap.set('n', '<C-S-N>', function()
   harpoon:list():next()
 end)
+
+-- -- nabla config
+-- nabla = require("nabla")
+-- nnoremap("<leader>p", nabla.popup()<CR>, "Customize with popup({border = ...})  : `single` (default), `double`, `rounded`")
