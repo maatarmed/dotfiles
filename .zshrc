@@ -95,9 +95,6 @@ export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export SECOND_BRAIN="$GHREPOS/ZeeVault"
 
-# create the paths if they don't exist
-mkdir -p $REPOS
-mkdir -p $GHREPOS
 
 ############# PATH #############
 PATH="${PATH:+${PATH}:}"$SCRIPTS"" # appending scripts to path

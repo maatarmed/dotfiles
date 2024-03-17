@@ -11,9 +11,13 @@ mkdir -p "$XDG_CONFIG_HOME"/alacritty
 mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
 mkdir -p "$XDG_CONFIG_HOME"/tmux/plugins
 
-
-git clone https://github.com/alacritty/alacritty-theme "$XDG_CONFIG_HOME"/alacritty/themes
-
+# clone the alacritty theme if it is not cloned
+if [ ! -d "$XDG_CONFIG_HOME"/alacritty/themes ]; then
+    echo "Alacritty theme is not cloned. Cloning..."
+    git clone https://github.com/alacritty/alacritty-theme "$XDG_CONFIG_HOME"/alacritty/themes
+else
+    echo "Alacritty theme is already cloned."
+fi
 # set up git prompt
 # curl -L htps://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
 
@@ -40,6 +44,8 @@ chmod +x "$PWD"/scripts/*
 if ! command -v brew &> /dev/null; then
     echo "Homebrew is not installed. Installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "Homebrew is already installed."
 fi
 # ubuntu packages apt
 sudo apt install gcc g++ unzip fd-find fzf ripgrep git-core curl fonts-powerline ripgrep -y
@@ -51,25 +57,36 @@ brew install go lazygit
 if [ ! -d "$HOME"/.oh-my-zsh ]; then
     echo "oh-my-zsh is not installed. Installing..."
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+    echo "oh-my-zsh is already installed."
 fi
 
 # install zsh-autosuggestions and zsh-syntax-highlighting
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
     echo "zsh-autosuggestions is not installed. Installing..."
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+else
+    echo "zsh-autosuggestions is already installed."
 fi
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+else
+    echo "zsh-syntax-highlighting is already installed."
 fi
 source .zshrc
-# install tpm
-git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME"/tmux/plugins/
+# install tpm if not installed
+if [ ! -f "$XDG_CONFIG_HOME"/tmux/plugins/tpm ]; then
+    echo "tpm is not installed. Installing..."
+    git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME"/tmux/plugins/
+else
+    echo "tpm is already installed."
+fi
 
 if ! command -v nvim &> /dev/null; then
     echo "NeoVim is not installed. Installing..."
     # install neovim
     mkdir temp
-    git clone https://github.com/neovim/neovim.git temp/neovim
+    git clone https://github.com/neovim/neovim.git temp/
     cd temp/neovim
     make CMAKE_BUILD_TYPE=Release
     sudo make install
@@ -78,3 +95,5 @@ if ! command -v nvim &> /dev/null; then
 else
     echo "NeoVim is already installed."
 fi
+
+mkdir -p $SECOND_BRAIN
