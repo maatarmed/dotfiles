@@ -94,8 +94,27 @@ export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export SECOND_BRAIN="$GHREPOS/ZeeVault"
+export EJ="$REPOS/github.com/eyesjapan/"
+export ALAN="$EJ/alan-pd-ml"
 
-
+# if path does not exist, create it
+if [ ! -d "$REPOS" ]; then
+  mkdir -p $REPOS
+fi
+if [ ! -d "$GHREPOS" ]; then
+  mkdir -p $GHREPOS
+fi
+if [ ! -d "$EJ" ]; then
+  mkdir -p $EJ
+fi
+#second brain
+if [ ! -d "$SECOND_BRAIN" ]; then
+  mkdir -p $SECOND_BRAIN
+fi
+# alan
+if [ ! -d "$ALAN" ]; then
+  git clone git@github.com:eyesjapan/alan-pd-ml.git $ALAN
+fi
 ############# PATH #############
 PATH="${PATH:+${PATH}:}"$SCRIPTS"" # appending scripts to path
 export PATH
@@ -131,7 +150,7 @@ alias scripts="cd $SCRIPTS"
 alias repos="cd $REPOS"
 alias ghrepos="cd $GHREPOS"
 alias dot="cd $DOTFILES"
-alias alan="cd $Repos/alan_pd_repo/alan-pd-ml"
+alias alan="cd $ALAN"
 alias sb="cd \$SECOND_BRAIN"
 # ls
 alias ll="ls -la"
