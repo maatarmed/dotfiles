@@ -15,7 +15,7 @@ mkdir -p "$XDG_CONFIG_HOME"/tmux/plugins
 git clone https://github.com/alacritty/alacritty-theme "$XDG_CONFIG_HOME"/alacritty/themes
 
 # set up git prompt
-# curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
+# curl -L htps://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
 
 # Symbolic links
 
@@ -24,45 +24,57 @@ ln -sf "$PWD/alacritty.toml" "$XDG_CONFIG_HOME"/alacritty/alacritty.toml
 ln -sf "$PWD/.zsh_profile" "$HOME"/.zsh_profile
 ln -sf "$PWD/.zshrc" "$HOME"/.zshrc
 ln -sf "$PWD/.inputrc" "$HOME"/.inputrc
-ln -sf "$PWD/.tmux.conf" "$HOME"/.tmux.conf
+# ln -sf "$PWD/.tmux.conf" "$HOME"/.tmux.conf
 ln -sf "$PWD/.tmux.conf" "$XDG_CONFIG_HOME"/tmux/.tmux.conf
 ln -sf "$PWD/nvim" "$XDG_CONFIG_HOME"/nvim
-ls -sf "$PWD/.p10k.zsh" "$XDG_CONFIG_HOME"/.p10k.zsh
+ln -sf "$PWD/.p10k.zsh" "$XDG_CONFIG_HOME"/.p10k.zsh
+ln -sf "$PWD/scripts/" "$XDG_CONFIG_HOME"/scripts
 # set up blog
 # git clone git@github.com:mischavandenburg/hugo-PaperModX-theme.git themes/PaperModX --depth=1
-
+# Give permissions to the scripts
+chmod +x "$PWD"/scripts/*
 # Packages
 
 
-# install brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-brew install --cask alacritty
-
-# brew packages Mac
-# amethyst fzf nvim exa hugo bash-completion@2 newsboat kubectl
-
+# install brew if not installed
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew is not installed. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 # ubuntu packages apt
-sudo apt install ripgrep gh -y
+sudo apt install gcc g++ unzip fd-find fzf ripgrep git-core curl fonts-powerline ripgrep -y
 
-# ubuntu apt neovim setup
-sudo apt install gcc g++ unzip -y
+# ubuntu brew for go and lazygit setup
+brew install go lazygit
 
-# ubuntu brew for vim and neovim setup
-sudo apt install fd-find fzf -y
+# install ohmyzsh if it is not installed
+if [ ! -d "$HOME"/.oh-my-zsh ]; then
+    echo "oh-my-zsh is not installed. Installing..."
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
-# ubuntu brew for neovim setup
-brew install neovim go lazygit
-sudo apt install git-core curl fonts-powerline -y
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
+# install zsh-autosuggestions and zsh-syntax-highlighting
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+    echo "zsh-autosuggestions is not installed. Installing..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
 source .zshrc
-# ubuntu specific notes
-# create symbolic link to neovim from vim when not using neovim on
-# Ubuntu systems, because I use the v alias everywhere.
-# sudo ln -sf /usr/bin/vim /usr/bin/nvim
-git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME"/tmux/plugins/tpm
+# install tpm
+git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME"/tmux/plugins/
+
+if ! command -v nvim &> /dev/null; then
+    echo "NeoVim is not installed. Installing..."
+    # install neovim
+    mkdir temp
+    git clone https://github.com/neovim/neovim.git temp/neovim
+    cd temp/neovim
+    make CMAKE_BUILD_TYPE=Release
+    sudo make install
+    cd ../..
+    rm -rf temp
+else
+    echo "NeoVim is already installed."
+fi

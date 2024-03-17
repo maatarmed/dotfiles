@@ -89,8 +89,19 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export GITUSER="maatarmed"
+export REPOS="$HOME/Repos"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
+export SCRIPTS="$DOTFILES/scripts"
+export SECOND_BRAIN="$GHREPOS/ZeeVault"
+
+# create the paths if they don't exist
+mkdir -p $REPOS
+mkdir -p $GHREPOS
+
+############# PATH #############
+PATH="${PATH:+${PATH}:}"$SCRIPTS"" # appending scripts to path
+export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -115,4 +126,29 @@ export DOTFILES="$GHREPOS/dotfiles"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+############ Aliases ############
+# CD
+alias v=nvim
+alias ..="cd .."
+alias scripts="cd $SCRIPTS"
+alias repos="cd $REPOS"
+alias ghrepos="cd $GHREPOS"
+alias dot="cd $DOTFILES"
+alias alan="cd $Repos/alan_pd_repo/alan-pd-ml"
+alias sb="cd \$SECOND_BRAIN"
+# ls
+alias ll="ls -la"
+alias la="ls -lathr"
+# finds all files recursively and sorts by last modification, ignore hidden files
+alias last='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
 
+alias t='tmux'
+
+# git
+alias gp="git pull"
+alias gs="git status"
+alias lg="lazygit"
+alias gc="git commit"
+
+#sourcing
+alias szr='source ~/.zshrc'
