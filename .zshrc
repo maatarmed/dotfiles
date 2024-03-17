@@ -84,7 +84,7 @@ plugins=(git ubuntu zsh-autosuggestions  zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
