@@ -33,6 +33,7 @@ ln -sf "$PWD/.tmux.conf" "$XDG_CONFIG_HOME"/tmux/.tmux.conf
 ln -sf "$PWD/nvim" "$XDG_CONFIG_HOME"/nvim
 ln -sf "$PWD/.p10k.zsh" "$XDG_CONFIG_HOME"/.p10k.zsh
 ln -sf "$PWD/scripts/" "$XDG_CONFIG_HOME"/scripts
+ln -sf "$PWD/powerlevel10k/" "$HOME"/powerlevel10k
 # set up blog
 # git clone git@github.com:mischavandenburg/hugo-PaperModX-theme.git themes/PaperModX --depth=1
 # Give permissions to the scripts
