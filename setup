@@ -98,3 +98,11 @@ else
 fi
 
 mkdir -p $SECOND_BRAIN
+
+# if powerlevel10k is not installed
+if [ ! -d "$ZSH_CUSTOM"/themes/powerlevel10k ]; then
+    echo "powerlevel10k is not installed. Installing..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+else
+    echo "powerlevel10k is already installed."
+fi
