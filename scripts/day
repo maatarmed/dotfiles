@@ -1,8 +1,6 @@
 #!/bin/bash
 
 today=$(date +"%Y-%m-%d")
-tomorrow=$(gdate -d "tomorrow" '+%Y-%m-%d')
-yesterday=$(gdate -d "yesterday" '+%Y-%m-%d')
 file="$SECOND_BRAIN"'/periodic-notes/daily-notes/'$(date +"%Y-%m-%d").md
 
 cd "$SECOND_BRAIN" || exit
@@ -14,7 +12,6 @@ new_note() {
 	cat <<EOF >"$file"
 # $today
 
-[[$yesterday]] - [[$tomorrow]]
 
 ## Intention
 
@@ -22,13 +19,9 @@ What do I want to achieve today and tomorrow?
 
 ## Tracking
 
-- [ ] Calories tracked
-- [ ] Run
-- [ ] Yoga or strength training
-- [ ] Meditation
-- [ ] Answer 1 question from steps
-- [ ] Skin routine
-- [ ] Oral routine
+- [ ] Work on PhD
+- [ ] Work on EJ
+- [ ] Work on own project
 
 ## Log
 EOF
@@ -42,5 +35,7 @@ if [ ! -f "$file" ]; then
 	new_note
 fi
 
+# Open the daily note at the bottom of the file in insert mode
+nvim '+ normal Gzzo' "$file"
 # Open the daily note at the bottom of the file in insert mode and run NoNeckPain to make it center
-nvim '+ normal Gzzo' "$file" -c :NoNeckPain
+# nvim '+ normal Gzzo' "$file" -c :NoNeckPain

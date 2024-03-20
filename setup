@@ -106,3 +106,9 @@ if [ ! -d "$ZSH_CUSTOM"/themes/powerlevel10k ]; then
 else
     echo "powerlevel10k is already installed."
 fi
+# install node js if not existing
+if ! command -v node &> /dev/null; then
+    curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
+    sudo bash nodesource_setup.sh
+    sudo apt install nodejs
+fi
