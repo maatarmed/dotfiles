@@ -90,6 +90,14 @@ vim.keymap.set('n', '<C-S-N>', function()
   harpoon:list():next()
 end)
 
+-- Neotree config
+vim.keymap.set('n', '<leader>E', ':Neotree filesystem toggle<CR>', { desc = 'Toggle [E]xplorer' })
+vim.keymap.set('n', '<leader>bf', ':Neotree buffers reveal float<CR>', {})
+-- vim-doge config
+vim.keymap.set('n', '<leader>dG', ':DogeGenerate<CR>', { desc = 'Generate [D]oge' })
+vim.keymap.set('n', '<leader>dgn', ':let g:doge_doc_standard_python = "numpy"<CR>', { desc = 'Generate [D]oge [N]umpy' })
+vim.keymap.set('n', '<leader>dgg', ':let g:doge_doc_standard_python = "google"<CR>', { desc = 'Generate [D]oge[G]google' })
+
 -- -- nabla config
 -- nabla = require("nabla")
 -- nnoremap("<leader>p", nabla.popup()<CR>, "Customize with popup({border = ...})  : `single` (default), `double`, `rounded`")

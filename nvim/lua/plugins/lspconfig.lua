@@ -132,8 +132,41 @@ return { -- LSP Configuration & Plugins
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       -- clangd = {},
-      -- gopls = {},
-      -- pyright = {},
+      gopls = {},
+      -- pyright = {
+      -- settings = {
+      --   disableOrganizeImports = true,
+      --   disableTaggedHints = false,
+      --   python = {
+      --     analysis = {
+      --       autoImportCompletions = true,
+      --       autoSearchPaths = true,
+      --       useLibraryCodeForTypes = true,
+      --       diagnosticMode = 'workspace',
+      --       typeCheckingMode = 'strict',
+      --     },
+      --   },
+      -- },
+      -- },
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                enabled = true,
+                maxLineLength = 100,
+              },
+              pydocstyle = {
+                enabled = true,
+                convention = 'pep257',
+              },
+              yapf = {
+                enabled = true,
+              },
+            },
+          },
+        },
+      },
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -185,6 +218,8 @@ return { -- LSP Configuration & Plugins
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format lua code
+      'isort',
+      'black', -- Used to format python code
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
