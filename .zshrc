@@ -117,6 +117,7 @@ if [ ! -d "$ALAN" ]; then
 fi
 ############# PATH #############
 PATH="${PATH:+${PATH}:}"$SCRIPTS"" # appending scripts to path
+export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -152,6 +153,7 @@ alias ghrepos="cd $GHREPOS"
 alias dot="cd $DOTFILES"
 alias alan="cd $ALAN"
 alias sb="cd \$SECOND_BRAIN"
+alias lab="cd $REPOS/PhD_Thesis/source_code/floorplan/Nash_emulator/NASH_py"
 # ls
 alias ll="ls -la"
 alias la="ls -lathr"
