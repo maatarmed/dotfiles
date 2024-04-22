@@ -10,7 +10,9 @@ mkdir -p "$XDG_CONFIG_HOME"/zsh
 mkdir -p "$XDG_CONFIG_HOME"/alacritty
 mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
 mkdir -p "$XDG_CONFIG_HOME"/tmux/plugins
-
+mkdir -p "$XDG_CONFIG_HOME"/nvim
+mkdir -p "$XDG_CONFIG_HOME"/polybar
+mkdir -p "$XDG_CONFIG_HOME"/i3
 # clone the alacritty theme if it is not cloned
 if [ ! -d "$XDG_CONFIG_HOME"/alacritty/themes ]; then
     echo "Alacritty theme is not cloned. Cloning..."
@@ -34,6 +36,8 @@ ln -sf "$PWD/nvim" "$XDG_CONFIG_HOME"/nvim
 ln -sf "$PWD/.p10k.zsh" "$XDG_CONFIG_HOME"/.p10k.zsh
 ln -sf "$PWD/scripts/" "$XDG_CONFIG_HOME"/scripts
 ln -sf "$PWD/powerlevel10k/" "$HOME"/powerlevel10k
+ln -sf "$PWD/polybar/" "$XDG_CONFIG_HOME"/polybar
+ln -sf "$PWD/i3/" "$XDG_CONFIG_HOME"/i3
 # set up blog
 # git clone git@github.com:mischavandenburg/hugo-PaperModX-theme.git themes/PaperModX --depth=1
 # Give permissions to the scripts
@@ -49,7 +53,7 @@ else
     echo "Homebrew is already installed."
 fi
 # ubuntu packages apt
-sudo apt install gcc g++ unzip fd-find fzf ripgrep git-core curl fonts-powerline ripgrep -y
+sudo apt install gcc g++ unzip fd-find fzf ripgrep git-core curl fonts-powerline ripgrep polybar -y
 
 # ubuntu brew for go and lazygit setup
 brew install go lazygit

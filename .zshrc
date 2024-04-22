@@ -94,8 +94,9 @@ export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export SECOND_BRAIN="$GHREPOS/ZeeVault"
-export EJ="$REPOS/github.com/eyesjapan/"
+export EJ="$REPOS/github.com/eyesjapan"
 export ALAN="$EJ/alan-pd-ml"
+export TFAM="$REPOS/PhD_Thesis/source_code/TFAM"
 
 # if path does not exist, create it
 if [ ! -d "$REPOS" ]; then
@@ -114,6 +115,10 @@ fi
 # alan
 if [ ! -d "$ALAN" ]; then
   git clone git@github.com:eyesjapan/alan-pd-ml.git $ALAN
+fi
+# i3
+if [ ! -d "~/.config/i3/" ]; then
+  mkdir -p ~/.config/i3/
 fi
 ############# PATH #############
 PATH="${PATH:+${PATH}:}"$SCRIPTS"" # appending scripts to path
@@ -155,6 +160,7 @@ alias dot="cd $DOTFILES"
 alias alan="cd $ALAN"
 alias sb="cd \$SECOND_BRAIN"
 alias lab="cd $REPOS/PhD_Thesis/source_code/floorplan/Nash_emulator/NASH_py"
+alias tfam="cd $TFAM"
 # ls
 alias ll="ls -la"
 alias la="ls -lathr"
@@ -187,3 +193,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+setxkbmap us

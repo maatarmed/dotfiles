@@ -101,3 +101,5 @@ vim.keymap.set('n', '<leader>dgg', ':let g:doge_doc_standard_python = "google"<C
 -- -- nabla config
 -- nabla = require("nabla")
 -- nnoremap("<leader>p", nabla.popup()<CR>, "Customize with popup({border = ...})  : `single` (default), `double`, `rounded`")
+-- copilot config
+vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)')
