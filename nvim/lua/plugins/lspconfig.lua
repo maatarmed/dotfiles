@@ -148,6 +148,7 @@ return { -- LSP Configuration & Plugins
       --   },
       -- },
       -- },
+      hdl_checker = {},
       pylsp = {
         settings = {
           pylsp = {
