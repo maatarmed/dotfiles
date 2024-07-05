@@ -1,0 +1,52 @@
+#!/bin/bash
+
+today=$(date +"%Y-%m-%d")
+file="$SECOND_BRAIN"'/EJ/meeting/'$1$(date +"%Y-%m-%d").md
+echo "$file"
+cd "$SECOND_BRAIN" || exit
+
+new_note() {
+	touch "$file"
+
+	# Format the file with the daily template
+	cat <<EOF >"$file"
+# $1 $today
+
+---
+tags:
+  - $1
+  -
+---
+
+## Intention (brief motivation)
+
+## What is the new idea?
+
+## Tracking
+
+- [ ] Work on ALAN
+- [ ] Work on proj1
+- [ ] Work on proj2
+
+## What was discussed
+
+## People
+
+## My Next tasks
+
+## Other
+EOF
+
+}
+
+# If the daily note does not exist, create a new one.
+# this uses the test command with the -f flag.
+if [ ! -f "$file" ]; then
+	echo "File does not exist, creating new daily note."
+	new_note
+fi
+
+# Open the daily note at the bottom of the file in insert mode
+nvim '+ normal Gzzo' "$file"
+# Open the daily note at the bottom of the file in insert mode and run NoNeckPain to make it center
+# nvim '+ normal Gzzo' "$file" -c :NoNeckPain
