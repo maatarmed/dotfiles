@@ -10,13 +10,13 @@ new_note() {
 
 	# Format the file with the daily template
 	cat <<EOF >"$file"
-# $1 $today
-
 ---
 tags:
   - $1
   -
 ---
+# $1 $today
+
 
 ## Intention (brief motivation)
 
