@@ -114,7 +114,8 @@ if [ ! -d "$SECOND_BRAIN" ]; then
 fi
 # alan
 if [ ! -d "$ALAN" ]; then
-  git clone git@github.com:eyesjapan/alan-pd-ml.git $ALAN
+  mkdir -p $ALAN
+  # git clone git@github.com:eyesjapan/alan-pd-ml.git $ALAN
 fi
 # i3
 if [ ! -d "~/.config/i3/" ]; then
@@ -122,8 +123,14 @@ if [ ! -d "~/.config/i3/" ]; then
 fi
 ############# PATH #############
 PATH="${PATH:+${PATH}:}"$SCRIPTS"" # appending scripts to path
-PATH="$HOME/anaconda3/bin:$PATH"
-PATH="$HOME/miniconda3/bin:$PATH" # adding miniconda to path
+if [ -d "$HOME/anaconda3/" ]; then
+  PATH="$HOME/anaconda3/bin:$PATH"
+fi
+if [ -d "$HOME/miniconda3/" ]; then
+  PATH="$HOME/miniconda3/bin:$PATH"
+fi
+# PATH="$HOME/anaconda3/bin:$PATH"
+# PATH="$HOME/miniconda3/bin:$PATH" # adding miniconda to path
 export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -193,4 +200,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-setxkbmap us
+# setxkbmap us
