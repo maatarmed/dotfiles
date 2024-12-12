@@ -1,7 +1,7 @@
 #!/bin/bash
 
 today=$(date +"%Y-%m-%d")
-file="$SECOND_BRAIN"'/EJ/meetings/'$1'_'$(date +"%Y-%m-%d").md
+file="$SECOND_BRAIN"'/01-Projects/ALAN/Meetings/'$(date +"%Y-%m-%d")'_'$1'.md
 echo "$file"
 cd "$SECOND_BRAIN" || exit
 
@@ -12,15 +12,10 @@ new_note() {
 	cat <<EOF >"$file"
 ---
 tags:
-  - $1
+  - ALAN
   -
 ---
 # $1 $today
-
-
-## Intention (brief motivation)
-
-## What is the new idea?
 
 ## Tracking
 
@@ -28,11 +23,19 @@ tags:
 - [ ] Work on proj1
 - [ ] Work on proj2
 
-## What was discussed
+## Meeting Notes
+Present:
+- Maatar
+- Victor
 
-## People
 
-## My Next tasks
+## Work Notes
+
+### Next Tasks
+
+
+## Tasks list
+
 
 ## Other
 EOF

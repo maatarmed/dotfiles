@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file="$SECOND_BRAIN"'/books/'$1.md
+file="$SECOND_BRAIN"'/03-Resources/books/'$1.md
 echo "$file"
 cd "$SECOND_BRAIN" || exit
 
@@ -11,7 +11,7 @@ new_note() {
 	cat <<EOF >"$file"
 ---
 tags:
-  - $1
+  - books
   -
 ---
 # $1
