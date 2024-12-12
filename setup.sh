@@ -10,7 +10,7 @@ mkdir -p "$XDG_CONFIG_HOME"/zsh
 mkdir -p "$XDG_CONFIG_HOME"/alacritty
 mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
 mkdir -p "$XDG_CONFIG_HOME"/tmux/plugins
-mkdir -p "$XDG_CONFIG_HOME"/nvim
+# mkdir -p "$XDG_CONFIG_HOME"/nvim
 mkdir -p "$XDG_CONFIG_HOME"/polybar
 mkdir -p "$XDG_CONFIG_HOME"/i3
 # clone the alacritty theme if it is not cloned
