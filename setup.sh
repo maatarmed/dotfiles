@@ -30,7 +30,6 @@ ln -sf "$PWD/alacritty.toml" "$XDG_CONFIG_HOME"/alacritty/alacritty.toml
 ln -sf "$PWD/.zsh_profile" "$HOME"/.zsh_profile
 ln -sf "$PWD/.zshrc" "$HOME"/.zshrc
 ln -sf "$PWD/.inputrc" "$HOME"/.inputrc
-# ln -sf "$PWD/.tmux.conf" "$HOME"/.tmux.conf
 ln -sf "$PWD/.tmux.conf" "$XDG_CONFIG_HOME"/tmux/.tmux.conf
 ln -sf "$PWD/nvim" "$XDG_CONFIG_HOME"/nvim
 ln -sf "$PWD/.p10k.zsh" "$XDG_CONFIG_HOME"/.p10k.zsh
@@ -56,7 +55,7 @@ fi
 sudo apt install gcc g++ unzip fd-find fzf ripgrep git-core curl fonts-powerline ripgrep polybar -y
 
 # ubuntu brew for go and lazygit setup
-brew install go lazygit
+brew install go lazygit zoxide
 
 # install ohmyzsh if it is not installed
 if [ ! -d "$HOME"/.oh-my-zsh ]; then
@@ -103,13 +102,13 @@ fi
 
 mkdir -p $SECOND_BRAIN
 
-# if powerlevel10k is not installed
-if [ ! -d "$ZSH_CUSTOM"/themes/powerlevel10k ]; then
-    echo "powerlevel10k is not installed. Installing..."
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-else
-    echo "powerlevel10k is already installed."
-fi
+# # if powerlevel10k is not installed
+# if [ ! -d "$ZSH_CUSTOM"/themes/powerlevel10k ]; then
+#     echo "powerlevel10k is not installed. Installing..."
+#     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# else
+#     echo "powerlevel10k is already installed."
+# fi
 # install node js if not existing
 if ! command -v node &> /dev/null; then
     curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
